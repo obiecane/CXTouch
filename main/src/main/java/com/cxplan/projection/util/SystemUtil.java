@@ -22,6 +22,7 @@ public class SystemUtil {
     public final static String basePath;
 
     static {
+        // 基础目录
         basePath = System.getProperty("user.home") + separator + "." + APPLICATION_NAME + separator;
         String tmpPath = System.getProperty("config.path");
         if (tmpPath == null) {
@@ -50,11 +51,7 @@ public class SystemUtil {
     public static boolean isMac() {
         String osName = System.getProperty("os.name");
         osName = osName.toLowerCase();
-        if (osName.indexOf("mac") > -1) {
-            return true;
-        } else {
-            return false;
-        }
+        return osName.contains("mac");
     }
 
     /**
@@ -65,11 +62,7 @@ public class SystemUtil {
     public static boolean isWindow() {
         String osName = System.getProperty("os.name");
         osName = osName.toLowerCase();
-        if (osName.indexOf("window") > -1) {
-            return true;
-        } else {
-            return false;
-        }
+        return osName.contains("window");
     }
 
     /**
@@ -80,11 +73,7 @@ public class SystemUtil {
     public static boolean isLinux() {
         String osName = System.getProperty("os.name");
         osName = osName.toLowerCase();
-        if (osName.indexOf("linux") > -1) {
-            return true;
-        } else {
-            return false;
-        }
+        return osName.contains("linux");
     }
 
     /**

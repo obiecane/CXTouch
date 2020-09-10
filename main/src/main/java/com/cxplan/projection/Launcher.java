@@ -47,7 +47,8 @@ public class Launcher {
         PropertyConfigurator.configure(log4jConfig);
         java.util.logging.Logger.getGlobal().setLevel(Level.WARNING);
 
-        Setting.getInstance().addPropertyChangeListener(new DeviceSettingListener());//load system setting.
+        //load system setting.
+        Setting.getInstance().addPropertyChangeListener(new DeviceSettingListener());
         GUIUtil.lastSelectedDir = Setting.getInstance().getProperty(SettingConstant.KEY_LAST_SELECTED_DIR, null);
 
         try {
@@ -65,7 +66,9 @@ public class Launcher {
 
         //2. load service
         Application context = Application.getInstance();
+        // 扫描指定包下的服务并初始化
         ServiceFactory.initialize(context, "com.cxplan.projection.service");
+        // 载入所有的命令处理器
         CommandHandlerFactory.loadHandler(context, "com.cxplan.projection.command");
 
         //3. start ADB service
@@ -81,6 +84,7 @@ public class Launcher {
 
     private static void startADB() {
         //start ADB service
+        // 如果指定了SDK目录，则用SDK中的adb
         String adbLocation = System.getenv("ANDROID_HOME");
         if (adbLocation != null) {
             adbLocation += File.separator + "platform-tools" + File.separator + "adb";
