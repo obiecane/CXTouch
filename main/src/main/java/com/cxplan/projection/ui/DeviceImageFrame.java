@@ -370,6 +370,7 @@ public class DeviceImageFrame extends BaseWebFrame {
         toolBarPanel = createToolBar();
         mainContent.add(toolBarPanel, BorderLayout.NORTH);
 
+        // 设备屏幕显示
         clientScreen = new DeviceDisplayPanel(getGraphicsConfiguration(), monkeyInputListener);
         clientScreen.setBorder(BorderFactory.createEmptyBorder());
         clientScreen.setBackground(Color.gray);
@@ -1102,7 +1103,12 @@ public class DeviceImageFrame extends BaseWebFrame {
 
         }
     };
-    MonkeyInputListener monkeyInputListener = new MonkeyInputListener() {
+
+
+    /**
+     * 控制事件监听
+     */
+    private MonkeyInputListener monkeyInputListener = new MonkeyInputListener() {
         @Override
         public void press(int keyCode) {
             if (!DeviceImageFrame.this.connection.isOnline()) {
@@ -1114,9 +1120,7 @@ public class DeviceImageFrame extends BaseWebFrame {
             } catch (MessageException e) {
                 logger.error(e.getMessage(), e);
                 GUIUtil.showErrorMessageDialog(e.getMessage() , "ERROR");
-                return;
             }
-
         }
 
         @Override

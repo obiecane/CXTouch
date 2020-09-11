@@ -23,6 +23,12 @@ import java.awt.image.BufferedImage;
  */
 public class DeviceDisplayPanel extends JPanel {
 
+    /**
+     * gamma是色彩校正中的一个值
+     * https://www.zhihu.com/question/27467127/answer/37602200
+     * @param screen 显示器
+     * @return gamma
+     */
     public static double getGamma(GraphicsDevice screen) {
         ColorSpace cs = screen.getDefaultConfiguration().getColorModel().getColorSpace();
         if (cs.isCS_sRGB()) {
@@ -30,7 +36,7 @@ public class DeviceDisplayPanel extends JPanel {
         } else {
             try {
                 return ((ICC_ProfileRGB)((ICC_ColorSpace)cs).getProfile()).getGamma(0);
-            } catch (RuntimeException e) { }
+            } catch (RuntimeException ignored) { }
         }
         return 0.0;
     }
@@ -118,6 +124,13 @@ public class DeviceDisplayPanel extends JPanel {
         getCanvas().repaint();
     }
 
+    /**
+     * 初始化
+     * @param gc
+     * @param displayMode
+     * @param gamma
+     * @param inputListener
+     */
     private void doInit(final GraphicsConfiguration gc, final DisplayMode displayMode, final double gamma, MonkeyInputListener inputListener) {
         GraphicsDevice gd = gc.getDevice();
         DisplayMode d = gd.getDisplayMode(), d2 = null;
@@ -216,8 +229,8 @@ public class DeviceDisplayPanel extends JPanel {
                 } while (strategy.contentsRestored());
                 strategy.show();
             } while (strategy.contentsLost());
-        } catch (NullPointerException e) {
-        } catch (IllegalStateException e) { }
+        } catch (NullPointerException | IllegalStateException ignored) {
+        }
 
     }
 

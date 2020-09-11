@@ -1,10 +1,8 @@
 package com.android.ddmlib;
 
-import com.cxplan.projection.core.Application;
 import com.cxplan.projection.core.adb.AdbUtil;
 
 import java.io.File;
-import java.io.IOException;
 import java.net.InetSocketAddress;
 import java.nio.channels.SocketChannel;
 
@@ -17,9 +15,7 @@ public class CXAdbHelper {
     public static void removeAllForward() throws Exception{
         InetSocketAddress adbSockAddr = AndroidDebugBridge.getSocketAddress();
 
-        SocketChannel adbChan = null;
-        try {
-            adbChan = SocketChannel.open(adbSockAddr);
+        try (SocketChannel adbChan = SocketChannel.open(adbSockAddr)) {
             adbChan.configureBlocking(false);
 
             byte[] request = AdbHelper.formAdbRequest("host-serial:killforward-all");
@@ -30,10 +26,6 @@ public class CXAdbHelper {
             if (!resp.okay) {
                 Log.w("CXADBHelper", "Error creating forward: " + resp.message);
                 throw new AdbCommandRejectedException(resp.message);
-            }
-        } finally {
-            if (adbChan != null) {
-                adbChan.close();
             }
         }
     }
@@ -153,6 +145,7 @@ public class CXAdbHelper {
         }
 
         AndroidDebugBridge.addDeviceChangeListener(new AndroidDebugBridge.IDeviceChangeListener() {
+            @Override
             public void deviceConnected(IDevice device) {
                 if (device.isOnline()) {
                     String id = AdbUtil.getDeviceId(device);
@@ -160,11 +153,13 @@ public class CXAdbHelper {
                 }
             }
 
+            @Override
             public void deviceDisconnected(IDevice device) {
                 String id = AdbUtil.getDeviceId(device);
                 System.out.println("device disconnected:"+ id);
             }
 
+            @Override
             public void deviceChanged(IDevice device, int changeMask) {
                 System.out.println("changed:" + device.isOnline() + ":" + device);
             }

@@ -1,11 +1,13 @@
 package com.cxplan.projection.core.image;
 
+import java.io.Closeable;
+
 /**
  * @author kenny
  *
  * created on 2018-11-22
  */
-public interface IImageSession {
+public interface IImageSession extends Closeable {
 
     /**
      * Return the ID of node.
@@ -23,5 +25,6 @@ public interface IImageSession {
     /**
      * Close the image session channel.
      */
+    @Override
     void close() throws RuntimeException;
 }

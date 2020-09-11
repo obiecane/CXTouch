@@ -44,7 +44,9 @@ public class MainFrame extends BaseFrame {
     private static final StringManager stringMgr =
             StringManagerFactory.getStringManager(MainFrame.class);
 
-    private JPanel deviceListPane;//The panel where all device are placed.
+    //The panel where all device are placed.
+    private JPanel deviceListPane;
+
     private DefaultOverlayable deviceOverlayable;
     private IApplication application;
     private Map<String , DeviceComponent> deviceMap;
@@ -293,7 +295,6 @@ public class MainFrame extends BaseFrame {
         }
         if (clientFrame != null) {
             clientFrame.showWindow();
-            return;
         }
 
     }

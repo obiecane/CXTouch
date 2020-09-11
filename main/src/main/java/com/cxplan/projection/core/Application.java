@@ -303,9 +303,11 @@ public class Application implements IApplication {
         return infrastructureService;
     }
 
+    @Override
     public void addDeviceConnectionListener(DeviceConnectionListener listener) {
         deviceListenerList.add(DeviceConnectionListener.class, listener);
     }
+    @Override
     public void removeDeviceConnectionListener(DeviceConnectionListener listener) {
         deviceListenerList.remove(DeviceConnectionListener.class, listener);
     }
@@ -318,6 +320,7 @@ public class Application implements IApplication {
         scriptConnectionListenerList.remove(listener);
     }
 
+    @Override
     public List<String> getDeviceList() {
         return new ArrayList<>(deviceMap.keySet());
     }

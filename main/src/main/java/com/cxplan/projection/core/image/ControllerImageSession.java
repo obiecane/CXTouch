@@ -90,6 +90,7 @@ public class ControllerImageSession extends AbstractImageSession {
             }
         }
 
+        @Override
         public void run() {
             byte[] frameData = null;
             int frameSize;
