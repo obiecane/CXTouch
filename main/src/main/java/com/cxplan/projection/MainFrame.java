@@ -2,7 +2,6 @@ package com.cxplan.projection;
 
 import com.alee.global.StyleConstants;
 import com.alee.utils.WebUtils;
-import com.cxplan.projection.core.connection.DeviceConnectionAdapter;
 import com.cxplan.projection.core.connection.DeviceConnectionEvent;
 import com.cxplan.projection.core.connection.DeviceConnectionListener;
 import com.cxplan.projection.core.connection.IDeviceConnection;
@@ -520,7 +519,7 @@ public class MainFrame extends BaseFrame {
         }
     }
 
-    private class DeviceConnectionChangedListener extends DeviceConnectionAdapter {
+    private class DeviceConnectionChangedListener implements DeviceConnectionListener {
         @Override
         public void created(final DeviceConnectionEvent event) {
             SwingUtilities.invokeLater(new Runnable() {
@@ -589,7 +588,6 @@ public class MainFrame extends BaseFrame {
 
         @Override
         public void deviceChannelChanged(DeviceConnectionEvent event) {
-            super.deviceChannelChanged(event);
             updateDeviceChannel(event.getSource().getId());
         }
     }

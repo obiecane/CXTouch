@@ -10,14 +10,5 @@ import com.cxplan.projection.net.message.Message;
  */
 public class BaseDeviceConnection extends ClientConnection {
 
-    public boolean visitMessageCollectors(Message message) {
-        boolean ret = false;
-        for (MessageCollector collector : getPacketCollectors()) {
-            if (processMessage(collector, message)) {
-                ret = true;
-            }
-        }
 
-        return ret;
-    }
 }

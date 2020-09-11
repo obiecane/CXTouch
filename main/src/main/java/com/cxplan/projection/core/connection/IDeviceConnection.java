@@ -10,6 +10,7 @@ import java.beans.PropertyChangeListener;
 import java.nio.channels.SocketChannel;
 
 /**
+ * 设备连接
  * @author KennyLiu
  * @created on 2017/9/15
  */
@@ -31,6 +32,7 @@ public interface IDeviceConnection extends IDeviceMeta {
     /**
      * Return the unique identifier of this connection.
      */
+    @Override
     String getId();
     /**
      * Return the channel connected to message service

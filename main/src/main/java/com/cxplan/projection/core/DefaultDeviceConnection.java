@@ -75,6 +75,7 @@ public class DefaultDeviceConnection extends BaseDeviceConnection implements IDe
         }
     }
 
+    @Override
     public IDevice getDevice() {
         return device;
     }
@@ -313,6 +314,7 @@ public class DefaultDeviceConnection extends BaseDeviceConnection implements IDe
         return isConnected();
     }
 
+    @Override
     public SocketChannel getImageChannel() {
         return imageChannel;
     }

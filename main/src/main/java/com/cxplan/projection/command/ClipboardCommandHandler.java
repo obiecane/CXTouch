@@ -11,6 +11,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
+ * 粘贴板命令处理器
  * @author Kenny
  * created on 2018/12/14
  */

@@ -34,6 +34,7 @@ public class DeviceDisplayPanel extends JPanel {
         }
         return 0.0;
     }
+
     public static GraphicsDevice getScreenDevice(int screenNumber) throws Exception {
         GraphicsDevice[] screens = getScreenDevices();
         if (screenNumber >= screens.length) {
@@ -42,10 +43,14 @@ public class DeviceDisplayPanel extends JPanel {
         }
         return screens[screenNumber];//.getDefaultConfiguration();
     }
+
     public static GraphicsDevice[] getScreenDevices() {
         return GraphicsEnvironment.getLocalGraphicsEnvironment().getScreenDevices();
     }
 
+    /**
+     * 扩展组件
+     */
     protected JComponent extComp;
     protected Canvas canvas = null;
     protected double displayScale = 1.0;

@@ -18,6 +18,7 @@ public abstract class AbstractCommandHandler implements ICommandHandler {
         this.command = command;
     }
 
+    @Override
     public String getCommand() {
         return command;
     }

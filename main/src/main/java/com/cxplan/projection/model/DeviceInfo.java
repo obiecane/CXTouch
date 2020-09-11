@@ -36,6 +36,7 @@ public class DeviceInfo implements IDeviceMeta {
 
     }
 
+    @Override
     public String getId() {
         return id;
     }
@@ -43,6 +44,7 @@ public class DeviceInfo implements IDeviceMeta {
     public void setId(String id) {
         this.id = id;
     }
+    @Override
     @JsonProperty("p")
     public String getPhone() {
         return phone;
@@ -52,6 +54,7 @@ public class DeviceInfo implements IDeviceMeta {
     public void setPhone(String phone) {
         this.phone = phone;
     }
+    @Override
     @JsonProperty("wf")
     public String getNetwork() {
         return network;
@@ -60,6 +63,7 @@ public class DeviceInfo implements IDeviceMeta {
     public void setNetwork(String network) {
         this.network = network;
     }
+    @Override
     @JsonProperty("pn")
     public String getDeviceName() {
         return deviceName;
@@ -69,6 +73,7 @@ public class DeviceInfo implements IDeviceMeta {
         this.deviceName = deviceName;
     }
 
+    @Override
     public String getIp() {
         return ip;
     }
@@ -86,6 +91,7 @@ public class DeviceInfo implements IDeviceMeta {
     public void setVideoPort(int port) {
         this.port = port;
     }
+    @Override
     @JsonProperty("vw")
     public int getScreenWidth() {
         return screenWidth;
@@ -94,6 +100,7 @@ public class DeviceInfo implements IDeviceMeta {
     public void setScreenWidth(int screenWidth) {
         this.screenWidth = screenWidth;
     }
+    @Override
     @JsonProperty("vh")
     public int getScreenHeight() {
         return screenHeight;
@@ -102,6 +109,7 @@ public class DeviceInfo implements IDeviceMeta {
     public void setScreenHeight(int screenHeight) {
         this.screenHeight = screenHeight;
     }
+    @Override
     @JsonProperty("zr")
     public double getZoomRate() {
         return zoomRate;
@@ -120,6 +128,7 @@ public class DeviceInfo implements IDeviceMeta {
         this.rotation = rotation;
     }
 
+    @Override
     @JsonProperty("o")
     public boolean isOnline() {
         return isOnline;

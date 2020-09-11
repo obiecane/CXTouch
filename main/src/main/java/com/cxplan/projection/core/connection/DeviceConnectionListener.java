@@ -16,35 +16,37 @@ public interface DeviceConnectionListener extends EventListener{
      *
      * @return true: the frame is consumed, false: the image is not consumed.
      */
-    boolean frameReady(DeviceConnectionEvent event);
+    default boolean frameReady(DeviceConnectionEvent event) {
+        return false;
+    }
     /**
      * This method will be invoked when phone connection is created in context,
      * @param event connection event object.
      */
-    void created(DeviceConnectionEvent event);
+    default void created(DeviceConnectionEvent event) {}
 
     /**
      * This method will be invoked when phone connection is removed from context,
      * @param event connection event object.
      */
-    void removed(DeviceConnectionEvent event);
+    default void removed(DeviceConnectionEvent event) {}
 
     /**
      * This method is invoked When node has connected the phone.
      * @param event
      */
-    void connected(DeviceConnectionEvent event);
+    default void connected(DeviceConnectionEvent event){}
 
     /**
      * Notification that the connection was closed normally or that the reconnection
      * process has been aborted.
      */
-    void connectionClosed(DeviceConnectionEvent event);
+    default void connectionClosed(DeviceConnectionEvent event) {}
 
     /**
      * Notification that the device channel is changed. Usb cable and Wireless are supported by adb,
      * when the connection mode is changed, this method will be invoked.
      */
-    void deviceChannelChanged(DeviceConnectionEvent event);
+    default void deviceChannelChanged(DeviceConnectionEvent event) {}
 
 }

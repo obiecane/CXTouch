@@ -26,10 +26,12 @@ public class MessageIDFilter implements MessageFilter {
         this.cmd = cmd;
     }
 
+    @Override
     public boolean accept(Message packet) {
         return packetID.equals(packet.getId());
     }
 
+    @Override
     public String toString() {
         return "MessageIDFilter by id: " + packetID;
     }
