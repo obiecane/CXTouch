@@ -11,6 +11,8 @@ import java.util.List;
 import java.util.concurrent.ExecutorService;
 
 /**
+ * 代表一个当前应用
+ * 类似于全局上下文
  * @author KennyLiu
  * @created on 2017/8/31
  */

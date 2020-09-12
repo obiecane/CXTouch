@@ -119,8 +119,7 @@ public class GUIUtil {
     }
 
     /**
-     * Place frame container at the center of owner container.
-     *
+     * 把窗口放到父窗口的居中位置，如果没有父窗口，那么就放到屏幕居中位置
      * @param owner the referred container.
      * @param frame the container need be modify position.
      */
@@ -141,12 +140,17 @@ public class GUIUtil {
                         .getWidth(), frame.getHeight());
     }
 
+    /**
+     * 移动到父窗口居中位置
+     */
     public static void centerToOwnerWindow(Window frame) {
-        if (frame == null)
+        if (frame == null) {
             return;
+        }
         Container owner = frame.getOwner();
-        if (owner == null)
+        if (owner == null) {
             return;
+        }
         centerFrameToFrame(owner, frame);
     }
 
@@ -285,14 +289,16 @@ public class GUIUtil {
      */
     public static <T> T getUpParent(Container com, Class<T> parent,
                                     boolean isMustVisible) {
-        if (com == null || parent == null)
+
+        if (com == null || parent == null) {
             return null;
-        if (parent == com.getClass())
+        }
+        if (parent == com.getClass()) {
             return (T) com;
+        }
         Container con = com.getParent();
-        for (; con != null && !parent.isAssignableFrom(con.getClass()); con = con
-                .getParent())
-            ;
+        for (; con != null && !parent.isAssignableFrom(con.getClass()); con = con.getParent()) {
+        }
         if (con != null && !con.isVisible() && isMustVisible) {
             con = (Container) getUpParent(con, parent, isMustVisible);
         }
@@ -433,8 +439,9 @@ public class GUIUtil {
 
         if (filters != null) {
             for (int i = 0; i < filters.length; i++) {
-                if (filters[i] == null)
+                if (filters[i] == null) {
                     continue;
+                }
                 fc.addChoosableFileFilter(filters[i]);
             }
         }
@@ -445,15 +452,16 @@ public class GUIUtil {
             }
             fc.setSelectedFiles(tmpFiles);
         }
-        if (initialFilter != null)
+        if (initialFilter != null) {
             fc.setFileFilter(initialFilter);
+        }
         fc.setMultiSelectionEnabled(isMutiSelectable);
         int select = isOpen ? fc.showOpenDialog(con) : fc.showSaveDialog(con);
         if (select == JFileChooser.APPROVE_OPTION) {
             File[] tmp;
-            if (isMutiSelectable)
+            if (isMutiSelectable) {
                 tmp = fc.getSelectedFiles();
-            else {
+            } else {
                 tmp = new File[]{fc.getSelectedFile()};
             }
             if (tmp != null && tmp.length == 1) {//do only  when one file is selected .
@@ -463,8 +471,9 @@ public class GUIUtil {
                                     "" +
                                     "rite it?",
                             "Confirm!", JOptionPane.YES_NO_OPTION);
-                    if (result == JOptionPane.NO_OPTION)
+                    if (result == JOptionPane.NO_OPTION) {
                         return selectFileByFilter(con, initialFilter, filters, selectedFiles, currentDir, isMutiSelectable, isOpen, isPromptOnExist);
+                    }
                 }
             }
 
@@ -472,8 +481,9 @@ public class GUIUtil {
                 lastSelectedDir = tmp[0].getParent();
             }
             return tmp;
-        } else
+        } else {
             return null;
+        }
     }
 
     private static class ImageFileFilter extends FileFilter {

@@ -131,6 +131,8 @@ public class Launcher {
 
         //listen to changes on adb.
         AndroidDebugBridge.addDeviceChangeListener(new AndroidDebugBridge.IDeviceChangeListener() {
+
+            @Override
             public void deviceConnected(IDevice device) {
                 if (device.isOnline()) {
                     String id = AdbUtil.getDeviceId(device);
@@ -139,10 +141,12 @@ public class Launcher {
                 }
             }
 
+            @Override
             public void deviceDisconnected(IDevice device) {
                 Application.getInstance().removeDevice(device);
             }
 
+            @Override
             public void deviceChanged(IDevice device, int changeMask) {
                 if (changeMask == IDevice.CHANGE_STATE && device.isOnline()) {
                     String id = AdbUtil.getDeviceId(device);

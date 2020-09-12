@@ -57,12 +57,17 @@ public class Application implements IApplication {
         return instance;
     }
 
+    /**
+     * 加载所有的设备
+     * @param adb
+     */
     public static void loadAllDevices(AndroidDebugBridge adb) {
         final IDevice[] devices = adb.getDevices();
         if (devices.length == 0) {
             return;
         }
-        Application.getInstance();//Assure that the instance of context is created.
+        // 确保上下文被创建
+        Application.getInstance();
         List<Future> futureList = new ArrayList<>(devices.length);
         for (IDevice device : devices) {
             try {

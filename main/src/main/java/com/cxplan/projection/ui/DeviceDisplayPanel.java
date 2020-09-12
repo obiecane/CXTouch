@@ -289,22 +289,25 @@ public class DeviceDisplayPanel extends JPanel {
             return;
         }
 
-        Runnable r = new Runnable() { public void run() {
-            // There is apparently a bug in Java code for Linux, and what happens goes like this:
-            // 1. Canvas gets resized, checks the visible area (has not changed) and updates
-            // BufferStrategy with the same size. 2. pack() resizes the frame and changes
-            // the visible area 3. We call Canvas.setSize() with different dimensions, to make
-            // it check the visible area and reallocate the BufferStrategy almost correctly
-            // 4. Finally, we resize the Canvas to the desired size... phew!
-            canvas.setSize(width, height);
+        Runnable r = new Runnable() {
+            @Override
+            public void run() {
+                // There is apparently a bug in Java code for Linux, and what happens goes like this:
+                // 1. Canvas gets resized, checks the visible area (has not changed) and updates
+                // BufferStrategy with the same size. 2. pack() resizes the frame and changes
+                // the visible area 3. We call Canvas.setSize() with different dimensions, to make
+                // it check the visible area and reallocate the BufferStrategy almost correctly
+                // 4. Finally, we resize the Canvas to the desired size... phew!
+                canvas.setSize(width, height);
 
-            validate();
+                validate();
 
-            canvas.setSize(width+1, height+1);
-            canvas.setSize(width, height);
+                canvas.setSize(width+1, height+1);
+                canvas.setSize(width, height);
 
-            System.out.println("canvas size: " + width + "," + height);
-        }};
+                System.out.println("canvas size: " + width + "," + height);
+            }
+        };
 
         if (EventQueue.isDispatchThread()) {
             r.run();

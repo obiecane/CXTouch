@@ -1,6 +1,7 @@
 package com.cxplan.projection.model;
 
 /**
+ * 设备属性
  * @author KennyLiu
  * @created on 2018/5/18
  */
